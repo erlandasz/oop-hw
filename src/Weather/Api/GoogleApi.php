@@ -18,7 +18,6 @@ class GoogleApi
 
         return $today;
     }
-
     /**
      * @param Weather $before
      * @return Weather

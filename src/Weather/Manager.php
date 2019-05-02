@@ -4,6 +4,7 @@ namespace Weather;
 
 use Weather\Api\DataProvider;
 use Weather\Api\DbRepository;
+use Weather\Api\GoogleApi;
 use Weather\Model\Weather;
 
 class Manager
@@ -13,20 +14,27 @@ class Manager
      */
     private $transporter;
 
-    public function getTodayInfo(): Weather
+    public function getTodayInfo(string $source): Weather
     {
-        return $this->getTransporter()->selectByDate(new \DateTime());
+        return $this->getTransporter($source)->selectByDate(new \DateTime());
     }
 
-    public function getWeekInfo(): array
+    public function getWeekInfo(string $source): array
     {
-        return $this->getTransporter()->selectByRange(new \DateTime('midnight'), new \DateTime('+6 days midnight'));
+        return $this->getTransporter($source)->selectByRange(new \DateTime('midnight'), new \DateTime('+6 days midnight'));
     }
 
-    private function getTransporter()
+    private function getTransporter(string $source)
     {
         if (null === $this->transporter) {
-            $this->transporter = new DbRepository();
+            if ($source === 'db')
+            {
+                $this->transporter = new DbRepository();
+            }
+            if ($source === 'googleApi')
+            {
+                $this->transporter = new GoogleApi();
+            }
         }
 
         return $this->transporter;
