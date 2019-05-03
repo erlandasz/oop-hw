@@ -24,7 +24,7 @@ class GoogleApi
         for($i=0; $i <= 6; $i++)
         {
             $eachDay = $this->load(new NullWeather());
-            $eachDay->setDate(new \DateTime( $i . 'day'));
+            $eachDay->setDate(new \DateTime($i. day));
             $week[]=$eachDay;
         }
         return $week;
