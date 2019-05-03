@@ -5,6 +5,7 @@ namespace Weather;
 use Weather\Api\DataProvider;
 use Weather\Api\DbRepository;
 use Weather\Api\GoogleApi;
+use Weather\Api\JsonApi;
 use Weather\Model\Weather;
 
 class Manager
@@ -20,8 +21,8 @@ class Manager
             return $this->getTransporter($source)->selectByDate(new \DateTime());
         if ($source === 'googleApi')
             return $this->getTransporter($source)->getToday();
-//        if ($source === 'JSON')
-//            return $this->getTransporter($source)->someFunction();
+        if ($source === 'JSON')
+            return $this->getTransporter($source)->selectByDate(new \DateTime());
     }
 
     public function getWeekInfo(string $source): array
@@ -30,8 +31,8 @@ class Manager
             return $this->getTransporter($source)->selectByRange(new \DateTime('midnight'), new \DateTime('+6 days midnight'));
         if ($source === 'googleApi')
             return $this->getTransporter($source)->getWeek();
-//        if ($source === 'JSON')
-//            return $this->getTransporter($source)->someFunction();
+        if ($source === 'JSON')
+            return $this->getTransporter($source)->selectByDate(new \DateTime());
     }
 
     private function getTransporter(string $source)
@@ -45,10 +46,10 @@ class Manager
             {
                 $this->transporter = new GoogleApi();
             }
-//            if ($source === 'JSON')
-//            {
-//                $this->transporter = new JSON();
-//            }
+            if ($source === 'JSON')
+            {
+                $this->transporter = new JsonApi();
+            }
         }
 
         return $this->transporter;
