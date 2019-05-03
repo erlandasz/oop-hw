@@ -22,13 +22,13 @@ switch ($request->getRequestUri()) {
         $renderInfo = $controller->getWeekWeather('googleApi');
         break;
     case '/f-week':
-        $renderInfo = $controller->getWeekWeather();
+        $renderInfo = $controller->getWeekWeather('JSON');
         break;
     case '/g-day':
         $renderInfo = $controller->getTodayWeather('googleApi');
         break;
     case '/f-day':
-        $renderInfo = $controller->getTodayWeather();
+        $renderInfo = $controller->getTodayWeather('JSON');
         break;
     case '/':
     default:

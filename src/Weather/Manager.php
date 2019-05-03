@@ -16,12 +16,15 @@ class Manager
 
     public function getTodayInfo(string $source): Weather
     {
-        return $this->getTransporter($source)->selectByDate(new \DateTime());
+        if ($source === 'db')
+            return $this->getTransporter($source)->selectByDate(new \DateTime());
+        if ($source === 'googleApi')
+            return $this->getTransporter($source)->getToday();
     }
 
     public function getWeekInfo(string $source): array
     {
-        return $this->getTransporter($source)->selectByRange(new \DateTime('midnight'), new \DateTime('+6 days midnight'));
+            return $this->getTransporter($source)->selectByRange(new \DateTime('midnight'), new \DateTime('+6 days midnight'));
     }
 
     private function getTransporter(string $source)
