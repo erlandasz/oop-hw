@@ -20,11 +20,18 @@ class Manager
             return $this->getTransporter($source)->selectByDate(new \DateTime());
         if ($source === 'googleApi')
             return $this->getTransporter($source)->getToday();
+//        if ($source === 'JSON')
+//            return $this->getTransporter($source)->someFunction();
     }
 
     public function getWeekInfo(string $source): array
     {
+        if ($source === 'db')
             return $this->getTransporter($source)->selectByRange(new \DateTime('midnight'), new \DateTime('+6 days midnight'));
+        if ($source === 'googleApi')
+            return $this->getTransporter($source)->getWeek();
+//        if ($source === 'JSON')
+//            return $this->getTransporter($source)->someFunction();
     }
 
     private function getTransporter(string $source)
@@ -38,6 +45,10 @@ class Manager
             {
                 $this->transporter = new GoogleApi();
             }
+//            if ($source === 'JSON')
+//            {
+//                $this->transporter = new JSON();
+//            }
         }
 
         return $this->transporter;
