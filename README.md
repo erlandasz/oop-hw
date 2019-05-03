@@ -6,13 +6,7 @@ composer install
 Then you can open index.php
 
 
-**Help:**
-- https://www.php.net/manual/en/language.oop5.php
-- https://twig.symfony.com/doc/2.x/
-  - https://twig.symfony.com/doc/2.x/intro.html
-- https://symfony.com/doc/current/components/http_foundation.html
-  - https://symfony.com/doc/current/components/http_foundation.html#request
-  - https://symfony.com/doc/current/components/http_foundation.html#response
-- https://getcomposer.org/doc/
-  - https://getcomposer.org/download/
-  - https://getcomposer.org/doc/03-cli.md#install-i
+**How To:**
+- all necessary links are in navbar (/day , /week , /g-day , /g-week , /f-day , /f-week)
+- start page still has two methods
+- result has 6 pages
