@@ -18,6 +18,17 @@ class GoogleApi
 
         return $today;
     }
+    public function getWeek()
+    {
+        $week = [];
+        for($i=0; $i <= 6; $i++)
+        {
+            $eachDay = $this->load(new NullWeather());
+            $eachDay->setDate(new \DateTime( $i . 'day'));
+            $week[]=$eachDay;
+        }
+        return $week;
+    }
     /**
      * @param Weather $before
      * @return Weather
