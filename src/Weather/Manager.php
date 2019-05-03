@@ -32,7 +32,7 @@ class Manager
         if ($source === 'googleApi')
             return $this->getTransporter($source)->getWeek();
         if ($source === 'JSON')
-            return $this->getTransporter($source)->selectByDate(new \DateTime());
+            return $this->getTransporter($source)->selectByRange(new \DateTime('midnight'), new \DateTime('+6 days midnight'));
     }
 
     private function getTransporter(string $source)
